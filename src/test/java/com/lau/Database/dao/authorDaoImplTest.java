@@ -68,6 +68,23 @@ public class authorDaoImplTest {
     }
 
 
+    @Test
+    public void UpdateFullSQL(){
+        Author author = TestDataUtil.createTestAuthor();
+        underTest.update(5L,author);
+
+        verify(JdbcTemp).update(
+                "UPDATE authors SET id = ?, name = ?, age = ? WHERE id = ?",
+                1L,
+                "Abigail Rose",
+                80,
+                5L
+
+
+        );
+
+
+    }
 
 
 }
