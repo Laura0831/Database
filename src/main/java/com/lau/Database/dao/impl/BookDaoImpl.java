@@ -40,6 +40,11 @@ public class BookDaoImpl implements BookDAO {
         return result.stream().findFirst();
     }
 
+    @Override
+    public List<Book> findMany() {
+        return jdbcTemp.query("SELECT isbn, title, author_id FROM books",
+                new BookDaoImpl.BookRowMapper());
+    }
 
 
     //NEW CLASS INSIDE:

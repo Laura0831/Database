@@ -10,14 +10,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class BookDaoImplIntegrationTest {
 
     private BookDaoImpl underTest;
@@ -43,6 +46,29 @@ public class BookDaoImplIntegrationTest {
         assertThat(result.get()).isEqualTo(book);
 
     }
+
+    @Test
+    public void MultiplBooksCreated(){
+        //creates one author that has multiple books
+        Author authorTemp = TestDataUtil.createTestAuthor2();
+        author.create(authorTemp);
+
+        //book 2
+        Book book2 = TestDataUtil.createTestBook2();
+        book2.setAuthorId(authorTemp.getId());
+        underTest.create(book2);
+
+        //book 3
+        Book book3 = TestDataUtil.createTestBook3();
+        book3.setAuthorId(authorTemp.getId());
+        underTest.create(book3);
+
+        List<Book> result = underTest.findMany();
+        assertThat(result).hasSize(2);
+        assertThat(result).containsExactly(book2, book3);
+
+    }
+
 
 
 }

@@ -1,6 +1,7 @@
 package com.lau.Database.dao;
 
 import com.lau.Database.TestDataUtil;
+import com.lau.Database.dao.impl.AuthorDaoImpl;
 import com.lau.Database.dao.impl.BookDaoImpl;
 import com.lau.Database.domain.Book;
 import org.junit.jupiter.api.Test;
@@ -51,5 +52,13 @@ public class BookDaoImplTest {
     }
 
 
+    @Test
+    public void FindManyBooks(){
+        underTest.findMany();
+        verify(JdbcTemp).query(
+                eq("SELECT isbn, title, author_id FROM books"),
+                ArgumentMatchers.<BookDaoImpl.BookRowMapper>any()
+        );
+    }
 
 }
