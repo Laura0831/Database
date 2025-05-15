@@ -46,6 +46,17 @@ public class BookDaoImpl implements BookDAO {
                 new BookDaoImpl.BookRowMapper());
     }
 
+    @Override
+    public void update(String isbn, Book book) {
+
+        jdbcTemp.update( "UPDATE book SET isbn=?, title=?, author_id=?, WHERE isbn=?",
+               book.getIsbn(),
+               book.getTitle(),
+               book.getAuthorId(),
+               isbn
+       );
+    }
+
 
     //NEW CLASS INSIDE:
     //rowMapper is there to convert from a result set (which is something that is return when we query the database)
