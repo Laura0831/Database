@@ -49,7 +49,7 @@ public class BookDaoImpl implements BookDAO {
     @Override
     public void update(String isbn, Book book) {
 
-        jdbcTemp.update( "UPDATE book SET isbn=?, title=?, author_id=?, WHERE isbn=?",
+        jdbcTemp.update( "UPDATE books SET isbn = ?, title = ?, author_id = ? WHERE isbn = ?",
                book.getIsbn(),
                book.getTitle(),
                book.getAuthorId(),
