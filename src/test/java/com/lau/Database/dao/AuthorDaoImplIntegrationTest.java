@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -40,6 +41,16 @@ public class AuthorDaoImplIntegrationTest {
 
     @Test
     public void MultipleAuthorsCreated(){
+        Author author = TestDataUtil.createTestAuthor();
+        underTest.create(author);
+        Author author2 = TestDataUtil.createTestAuthor2();
+        underTest.create(author2);
+        Author author3 = TestDataUtil.createTestAuthor3();
+        underTest.create(author3);
+
+        List<Author> result = underTest.find();
+        assertThat(result).hasSize(3);
+        assertThat(result).containsExactly(author, author2, author3);
 
     }
 
