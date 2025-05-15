@@ -2,7 +2,7 @@
 
 Tech Stack 
 
-Language: Java
+Language: Java /n
 Framework: Spring Boot
 Containerization: Docker
 Database: PostGre
