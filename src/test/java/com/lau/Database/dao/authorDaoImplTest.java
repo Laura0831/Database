@@ -57,4 +57,17 @@ public class authorDaoImplTest {
         );
     }
 
+
+    @Test
+    public void FindManySQL(){
+        underTest.find();
+        verify(JdbcTemp).query(
+                eq("SELECT id, name, age FROM authors"),
+                ArgumentMatchers.<AuthorDaoImpl.AuthorRowMapper>any()
+        );
+    }
+
+
+
+
 }

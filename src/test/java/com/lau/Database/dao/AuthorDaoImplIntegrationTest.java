@@ -38,5 +38,10 @@ public class AuthorDaoImplIntegrationTest {
 
     }
 
+    @Test
+    public void MultipleAuthorsCreated(){
+
+    }
+
 
 }

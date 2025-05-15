@@ -41,8 +41,21 @@ public class AuthorDaoImpl implements AuthorDAO {
             return result.stream().findFirst();
         }
 
+    @Override
+    public List<Author> find() {
 
-        //NEW CLASS INSIDE:
+        return jdbcTemplate.query("SELECT id, name, age FROM authors",
+                new AuthorRowMapper());
+
+
+    }
+
+
+
+
+
+
+    //NEW CLASS INSIDE:
         //rowMapper is there to convert from a result set (which is something that is return when we query the database)
         //and convert it into an object (author object)
         public static class AuthorRowMapper implements RowMapper<Author>{
