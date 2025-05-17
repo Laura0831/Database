@@ -79,11 +79,14 @@ public class authorDaoImplTest {
                 "Abigail Rose",
                 80,
                 5L
-
-
         );
+    }
 
 
+    @Test
+    public void DeleteSQL(){
+        underTest.delete(1L);
+        verify(JdbcTemp).update("DELETE FROM authors WHERE id = ?", 1L);
     }
 
 

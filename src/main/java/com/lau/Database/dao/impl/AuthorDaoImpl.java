@@ -60,6 +60,11 @@ public class AuthorDaoImpl implements AuthorDAO {
         );
     }
 
+    @Override
+    public void delete(long id) {
+        jdbcTemplate.update("DELETE FROM authors WHERE id = ?", id);
+    }
+
 
     //NEW CLASS INSIDE:
         //rowMapper is there to convert from a result set (which is something that is return when we query the database)
