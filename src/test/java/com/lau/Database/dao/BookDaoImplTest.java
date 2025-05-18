@@ -75,5 +75,12 @@ public class BookDaoImplTest {
     }
 
 
+    @Test
+    public void DeleteBook(){
+        underTest.delete("978-1-2345-6789-0");
+        verify(JdbcTemp).update("DELETE FROM books WHERE isbn = ?", "978-1-2345-6789-0");
+    }
+
+
 
 }

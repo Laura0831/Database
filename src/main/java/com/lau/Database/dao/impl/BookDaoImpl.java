@@ -57,6 +57,11 @@ public class BookDaoImpl implements BookDAO {
        );
     }
 
+    @Override
+    public void delete(String isbn) {
+        jdbcTemp.update("DELETE FROM books WHERE isbn = ?", isbn);
+    }
+
 
     //NEW CLASS INSIDE:
     //rowMapper is there to convert from a result set (which is something that is return when we query the database)

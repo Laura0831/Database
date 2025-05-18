@@ -87,5 +87,19 @@ public class BookDaoImplIntegrationTest {
 
     }
 
+    @Test
+    public void BookDeleted(){
+        Author authorTemp = TestDataUtil.createTestAuthor();
+        author.create(authorTemp);
+
+        Book book = TestDataUtil.createTestBook();
+        book.setAuthorId(authorTemp.getId());
+        underTest.create(book);
+
+        underTest.delete(book.getIsbn());
+        Optional<Book> result = underTest.find(book.getIsbn());
+        assertThat(result).isEmpty();
+    }
+
 
 }
