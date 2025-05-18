@@ -14,7 +14,7 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
@@ -31,3 +31,11 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### secrets and config ###
+.env
+src/main/resources/application.properties
+
+### macOS metadata files ###
+.DS_Store
+
